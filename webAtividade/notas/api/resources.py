@@ -1,5 +1,6 @@
 from tastypie.resources import ModelResource
 from notas.models import *
+from tastypie import fields, utils
 from django.contrib.auth.models import User
 from tastypie.authorization import Authorization
 
@@ -12,6 +13,15 @@ class FornecedorResource(ModelResource):
         filtering = {
             "nomeFantasia": ('exact', 'startswith',)
         }
+
+class NotaResource(ModelResource):
+    class Meta:
+        fornecedor = fields.ToOneField(FornecedorResource, 'id')
+        queryset = Nota.objects.all()
+        allowed_methods = ['get','post','delete','put']
+        authorization = Authorization()
+
+
 """
     A api está funcionando para o get e post, o put não funciona
 e o delete apaga todos os registros.
