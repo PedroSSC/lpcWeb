@@ -27,10 +27,3 @@ class NotaServicoResource(ModelResource):
         queryset = NotaServico.objects.all()
         allowed_methods = ['get','post','delete','put']
         authorization = Authorization()
-
-class NotaVendaResource(ModelResource):
-    class Meta:
-        nota = fields.ToOneField(NotaResource, 'id')
-        queryset =  NotaVenda.objects.all()
-        allowed_methods = ['get','post','delete','put']
-        authorization = Authorization()

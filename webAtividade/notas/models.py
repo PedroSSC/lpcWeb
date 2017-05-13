@@ -6,7 +6,7 @@ class Fornecedor(models.Model):
     nomeFantasia = models.CharField('nomeFantasia', max_length=200)
     cnpj = models.CharField('cnpj', max_length=100)
     def __repr__(self):
-        return self.cnpj
+        return self.nomeFantasia
 
 class Nota(models.Model):
     fornecedor = models.ForeignKey('Fornecedor')
@@ -18,8 +18,3 @@ class NotaServico(Nota):
     diasServico = models.CharField('diasServico', max_length=200)
     def __repr__(self):
         return '{}'.format(self.diasServico)
-
-class NotaVenda(Nota):
-    qtProdutos = models.CharField('qtProdutos', max_length=200)
-    def __repr__(self):
-        return '{}'.format(self.qtProdutos)

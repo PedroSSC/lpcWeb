@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from .models import Fornecedor, Nota, NotaServico, NotaVenda
+from .models import Fornecedor, Nota, NotaServico
 
 def index(request):
     html = """<h1>Opções</h1>
@@ -8,7 +8,7 @@ def index(request):
                     <li><a href='/notas'>Nota</a></li>
                     <ul>
                         <li><a href='/servico'>Notas de Serviço</a></li>
-                        <li><a href='/venda'>Notas de Venda</a></li>
+                        <li><a href='/api/v1/notaservico/'>JSON das notas de serviço</a></li>
                     </ul>
                 </ul>
             """
@@ -19,7 +19,6 @@ def listaFornecedor(request):
     listaFornecedor = Fornecedor.objects.all()
     for fornecedor in listaFornecedor:
         html += '<li><strong>{}</strong></li>'.format(fornecedor.nomeFantasia)
-        html += '<ul><li>CNPJ: {}</li>'.format(fornecedor.cnpj)
     return HttpResponse(html)
 
 def listaNotas(request):
@@ -37,13 +36,4 @@ def listaServico(request):
         html += '<li><strong>{}</strong></li>'.format(notasserv.fornecedor.nomeFantasia)
         html += '<ul><li>valor: {}</li>'.format(notasserv.valor)
         html += '<li>dias de serviço: {}</li></ul>'.format(notasserv.diasServico)
-    return HttpResponse(html)
-
-def listaVenda(request):
-    html = "<h1>Lista de Notas de Venda</h1>"
-    listaNotasVenda = NotaVenda.objects.all()
-    for notavenda in listaNotasVenda:
-        html += '<li><strong>{}</strong></li>'.format(notavenda.fornecedor.nomeFantasia)
-        html += '<ul><li>valor: {}</li>'.format(notavenda.valor)
-        html += '<li>dias de serviço: {}</li></ul>'.format(notavenda.diasServico)
     return HttpResponse(html)
