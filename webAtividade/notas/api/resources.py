@@ -21,15 +21,16 @@ class NotaResource(ModelResource):
         allowed_methods = ['get','post','delete','put']
         authorization = Authorization()
 
+class NotaServicoResource(ModelResource):
+    class Meta:
+        nota = fields.ToOneField(NotaResource, 'id')
+        queryset = NotaServico.objects.all()
+        allowed_methods = ['get','post','delete','put']
+        authorization = Authorization()
 
-"""
-    A api está funcionando para o get e post, o put não funciona
-e o delete apaga todos os registros.
-
-URI para apresentar o resource de fornecedor em Json:
-http://127.0.0.1:8000/api/v1/fornecedor/
-
-Exemplo de payload para usar com o Advanced Rest Client:
-{"nomeFantasia":"teste1"}
-
-"""
+class NotaVendaResource(ModelResource):
+    class Meta:
+        nota = fields.ToOneField(NotaResource, 'id')
+        queryset =  NotaVenda.objects.all()
+        allowed_methods = ['get','post','delete','put']
+        authorization = Authorization()

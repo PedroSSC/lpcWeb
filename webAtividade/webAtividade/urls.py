@@ -16,18 +16,22 @@ Including another URLconf
 from django.conf.urls import url, include
 from tastypie.api import Api
 from django.contrib import admin
-from notas.api.resources import FornecedorResource, NotaResource
+from notas.api.resources import FornecedorResource, NotaResource,NotaServicoResource, NotaVendaResource
 
 from notas.views import *
 
 v1_api = Api(api_name='v1')
 v1_api.register(FornecedorResource())
 v1_api.register(NotaResource())
+v1_api.register(NotaServicoResource())
+v1_api.register(NotaVendaResource())
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name='index'),
     url(r'^fornecedores/', listaFornecedor, name='listaFornecedor'),
     url(r'^notas/', listaNotas, name='listaNotas'),
+    url(r'^servico/', listaServico, name='servico'),
+    url(r'^venda/', listaVenda, name='venda'),
     url(r'^api/', include (v1_api.urls)),
 ]

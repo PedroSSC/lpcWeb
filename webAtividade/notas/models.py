@@ -18,3 +18,8 @@ class NotaServico(Nota):
     diasServico = models.CharField('diasServico', max_length=200)
     def __repr__(self):
         return '{}'.format(self.diasServico)
+
+class NotaVenda(Nota):
+    qtProdutos = models.CharField('qtProdutos', max_length=200)
+    def __repr__(self):
+        return '{}'.format(self.qtProdutos)
