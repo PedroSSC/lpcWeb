@@ -26,6 +26,7 @@ v1_api.register(NotaResource())
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', index, name='index'),
     url(r'^fornecedores/', listaFornecedor, name='listaFornecedor'),
     url(r'^notas/', listaNotas, name='listaNotas'),
     url(r'^api/', include (v1_api.urls)),
